@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumbar Spinal Stenosis (LSS) AI Diagnostic & Benchmark Suite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --dark-card: #1e293b;
+            --accent: #0ea5e9;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #f8fafc;
+        }
+        .card-header {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid #334155;
+            font-weight: 600;
+        }
+        .badge-normal { background-color: #10b981; color: white; }
+        .badge-moderate { background-color: #f59e0b; color: white; }
+        .badge-severe { background-color: #ef4444; color: white; }
+        .table-dark {
+            --bs-table-bg: #1e293b;
+            --bs-table-border-color: #334155;
+        }
+        .nav-tabs .nav-link {
+            color: #94a3b8;
+            border: none;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-tabs .nav-link.active {
+            color: #38bdf8;
+            background: transparent;
+            border-bottom: 2px solid #38bdf8;
+            font-weight: 600;
+        }
+        .lead-stat {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #38bdf8;
+        }
+        .slice-img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+    </style>
+</head>
+<body class="pb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark px-4 py-3">
+        <div class="container-fluid">
+            <span class="navbar-brand fw-bold">
+                <i class="fa-solid fa-bone text-info me-2"></i> Lumbar Spinal Stenosis (LSS) AI Diagnostic Platform
+            </span>
+            <span class="badge bg-primary px-3 py-2">RSNA Clinical Standard (L1/L2 &rarr; L5/S1)</span>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Quick System Stats -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="text-secondary small fw-bold text-uppercase">Spinal Canal Target</div>
+                    <div class="lead-stat">L1 to S1</div>
+                    <div class="small text-muted">5 Target Lumbar Levels</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="text-secondary small fw-bold text-uppercase">Image Backbones Evaluated</div>
+                    <div class="lead-stat">5 Models</div>
+                    <div class="small text-muted">Top 3 Head-to-Head &amp; Champion</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="text-secondary small fw-bold text-uppercase">Tabular Models Evaluated</div>
+                    <div class="lead-stat">5 Models</div>
+                    <div class="small text-muted">Top 3 Head-to-Head &amp; Champion</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card p-3 text-center">
+                    <div class="text-secondary small fw-bold text-uppercase">Leakage Safeguard</div>
+                    <div class="lead-stat text-success"><i class="fa-solid fa-shield-halved"></i> 100%</div>
+                    <div class="small text-muted">Patient Grouping ("No Cheating")</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs mb-4" id="mainTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="predict-tab" data-bs-toggle="tab" data-bs-target="#predict" type="button">
+                    <i class="fa-solid fa-stethoscope me-1"></i> Patient MRI Diagnostic &amp; Grad-CAM
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="image-models-tab" data-bs-toggle="tab" data-bs-target="#image-models" type="button">
+                    <i class="fa-solid fa-images me-1"></i> Image Models (Top 3 &amp; Champion)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tabular-models-tab" data-bs-toggle="tab" data-bs-target="#tabular-models" type="button">
+                    <i class="fa-solid fa-table me-1"></i> Tabular Models (Top 3 &amp; Champion)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="fusion-tab" data-bs-toggle="tab" data-bs-target="#fusion" type="button">
+                    <i class="fa-solid fa-network-wired me-1"></i> Multimodal Fusion &amp; Workflow
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="mainTabContent">
+            <!-- TAB 1: Predict & Grad-CAM -->
+            <div class="tab-pane fade show active" id="predict" role="tabpanel">
+                <div class="row g-4">
+                    <div class="col-lg-5">
+                        <div class="card p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-file-medical text-info me-2"></i> Upload Patient MRI Scan</h5>
+                            <p class="text-muted small">
+                                Upload a patient DICOM (.dcm) slice or MRI scan image (PNG/JPG). 
+                                The system automatically targets the spinal canal and grades severity into <strong>Normal/Mild</strong>, <strong>Moderate</strong>, or <strong>Severe</strong>.
+                            </p>
+                            <form action="/predict" method="POST" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label class="form-label text-secondary small fw-bold">Select Lower-Back Target Level:</label>
+                                    <select class="form-select bg-dark text-light border-secondary" name="level">
+                                        <option value="L1/L2">L1/L2 (Upper Lumbar)</option>
+                                        <option value="L2/L3">L2/L3</option>
+                                        <option value="L3/L4">L3/L4</option>
+                                        <option value="L4/L5" selected>L4/L5 (Highest Stenosis Incidence)</option>
+                                        <option value="L5/S1">L5/S1 (Lumbosacral Junction)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label text-secondary small fw-bold">Upload MRI File (.dcm, .png, .jpg):</label>
+                                    <input class="form-control bg-dark text-light border-secondary" type="file" name="mri_file" required>
+                                </div>
+                                <button type="submit" class="btn btn-info w-100 fw-bold py-2">
+                                    <i class="fa-solid fa-microscope me-2"></i> Run AI Diagnosis &amp; Grad-CAM
+                                </button>
+                            </form>
+                            <hr class="border-secondary my-4">
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-flask text-warning me-2"></i> Or Quick-Test Sample Patient:</h6>
+                            <a href="/predict_sample" class="btn btn-outline-secondary btn-sm w-100">
+                                Test Unseen Patient MRI Slice (L4/L5)
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        {% if result %}
+                        <div class="card p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="fw-bold mb-0">Diagnostic Assessment: {{ result.level }}</h5>
+                                    <span class="small text-muted">Spinal Canal Degeneration &amp; Stenosis Analysis</span>
+                                </div>
+                                <span class="badge fs-6 px-3 py-2 
+                                    {% if result.predicted_severity == 'Normal/Mild' %}badge-normal
+                                    {% elif result.predicted_severity == 'Moderate' %}badge-moderate
+                                    {% else %}badge-severe{% endif %}">
+                                    {{ result.predicted_severity }} Stenosis
+                                </span>
+                            </div>
+
+                            <div class="row g-2 mb-3 text-center">
+                                <div class="col-4">
+                                    <div class="p-2 border border-secondary rounded">
+                                        <div class="small text-muted">Normal/Mild</div>
+                                        <div class="fw-bold text-success">{{ (result.probabilities['Normal/Mild'] * 100)|round(1) }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 border border-secondary rounded">
+                                        <div class="small text-muted">Moderate</div>
+                                        <div class="fw-bold text-warning">{{ (result.probabilities['Moderate'] * 100)|round(1) }}%</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2 border border-secondary rounded">
+                                        <div class="small text-muted">Severe</div>
+                                        <div class="fw-bold text-danger">{{ (result.probabilities['Severe'] * 100)|round(1) }}%</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PACS Medical Imaging View Selector -->
+                            <div class="d-flex justify-content-between align-items-center mt-3 mb-2">
+                                <h6 class="fw-bold mb-0 text-info">
+                                    <i class="fa-solid fa-x-ray me-2"></i> Clinical Spinal MRI Views:
+                                </h6>
+                                <ul class="nav nav-pills nav-fill gap-1" id="mriViewPills" role="tablist">
+                                    <li class="nav-item">
+                                        <button class="nav-link active btn-sm py-1 px-2" id="pill-composite-tab" data-bs-toggle="pill" data-bs-target="#pill-composite" type="button">
+                                            <i class="fa-solid fa-table-columns me-1"></i> 3-Panel Master View
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link btn-sm py-1 px-2" id="pill-full-tab" data-bs-toggle="pill" data-bs-target="#pill-full" type="button">
+                                            <i class="fa-solid fa-bone me-1"></i> Full Spine MRI (L1-S1)
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link btn-sm py-1 px-2" id="pill-zoom-tab" data-bs-toggle="pill" data-bs-target="#pill-zoom" type="button">
+                                            <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Canal Zoom
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link btn-sm py-1 px-2" id="pill-cam-tab" data-bs-toggle="pill" data-bs-target="#pill-cam" type="button">
+                                            <i class="fa-solid fa-fire-flame-curved me-1"></i> Grad-CAM Saliency
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Tab Content for MRI Views -->
+                            <div class="tab-content border border-secondary rounded p-2 bg-black text-center" id="mriViewContent">
+                                <!-- 1. Composite 3-Panel View -->
+                                <div class="tab-pane fade show active" id="pill-composite" role="tabpanel">
+                                    {% if result.composite_url %}
+                                    <a href="{{ result.composite_url }}" target="_blank" title="Click to view full resolution">
+                                        <img src="{{ result.composite_url }}" class="img-fluid rounded" alt="3-Panel Diagnostic Composite" style="width: 100%; max-height: 480px; object-fit: contain;">
+                                    </a>
+                                    <div class="small text-muted mt-2 d-flex justify-content-between px-2">
+                                        <span><i class="fa-solid fa-circle-info text-info me-1"></i> <strong>Panel 1:</strong> Full Spine Alignment &bull; <strong>Panel 2:</strong> Targeted Canal ROI &bull; <strong>Panel 3:</strong> Grad-CAM Verification</span>
+                                        <a href="{{ result.composite_url }}" target="_blank" class="text-info text-decoration-none small"><i class="fa-solid fa-up-right-from-square me-1"></i> Expand</a>
+                                    </div>
+                                    {% elif result.cam_url %}
+                                    <img src="{{ result.cam_url }}" class="img-fluid rounded" alt="Grad-CAM Heatmap">
+                                    {% endif %}
+                                </div>
+
+                                <!-- 2. Full Spine MRI View -->
+                                <div class="tab-pane fade" id="pill-full" role="tabpanel">
+                                    {% if result.full_url %}
+                                    <a href="{{ result.full_url }}" target="_blank" title="Click to expand full spine view">
+                                        <img src="{{ result.full_url }}" class="img-fluid rounded" alt="Full Lumbar Spine MRI" style="max-height: 520px; object-fit: contain;">
+                                    </a>
+                                    <div class="small text-muted mt-2">
+                                        Complete Sagittal Lumbar Spine (L1 to S1). The target bounding box highlights the <strong>{{ result.level }}</strong> canal disc level.
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- 3. Canal Zoom View -->
+                                <div class="tab-pane fade" id="pill-zoom" role="tabpanel">
+                                    {% if result.canal_zoom_url %}
+                                    <img src="{{ result.canal_zoom_url }}" class="img-fluid rounded" alt="Canal Zoom View" style="max-height: 480px; object-fit: contain;">
+                                    <div class="small text-muted mt-2">
+                                        Magnified anatomical view of the {{ result.level }} dural sac lumen and disc margins.
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- 4. Grad-CAM Overlay View -->
+                                <div class="tab-pane fade" id="pill-cam" role="tabpanel">
+                                    {% if result.cam_url %}
+                                    <img src="{{ result.cam_url }}" class="img-fluid rounded" alt="Grad-CAM Saliency Map" style="max-height: 480px; object-fit: contain;">
+                                    <div class="small text-muted mt-2">
+                                        Color-coded saliency heatmap verifying neural attention on thecal sac constriction.
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card p-5 text-center text-muted">
+                            <i class="fa-solid fa-arrows-to-eye fs-1 mb-3 text-secondary"></i>
+                            <h5>No Patient Scan Analyzed Yet</h5>
+                            <p class="small">Upload an MRI DICOM slice or click "Test Unseen Patient MRI Slice" to view predictions, full spinal views, and Grad-CAM canal attention maps.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: Image Models Leaderboard -->
+            <div class="tab-pane fade" id="image-models" role="tabpanel">
+                <div class="card p-4 mb-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-trophy text-warning me-2"></i> Image Classification Models Benchmark (All 5 Models)</h5>
+                    <p class="text-muted small">
+                        Evaluated models: <strong>EfficientNet-B3</strong>, <strong>DenseNet-121</strong>, <strong>Vision Transformer</strong>, <strong>YOLOv8/v12 Classifier</strong>, and <strong>U-Net Classifier</strong>.
+                        Ranking emphasizes Macro-F1 and Severe Recall to protect against class imbalance.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model Name</th>
+                                    <th>Macro-F1</th>
+                                    <th>Severe Recall</th>
+                                    <th>Accuracy</th>
+                                    <th>Extreme Error</th>
+                                    <th>Clinical Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for m in image_models_ranked %}
+                                <tr {% if m.rank == 1 %}class="table-active border-info"{% endif %}>
+                                    <td>
+                                        {% if m.rank == 1 %}<i class="fa-solid fa-crown text-warning me-1"></i><strong>#1</strong>
+                                        {% elif m.rank == 2 %}<i class="fa-solid fa-medal text-secondary me-1"></i>#2
+                                        {% elif m.rank == 3 %}<i class="fa-solid fa-medal text-danger me-1"></i>#3
+                                        {% else %}#{{ m.rank }}{% endif %}
+                                    </td>
+                                    <td class="fw-bold">{{ m.model_name }}</td>
+                                    <td>{{ m.macro_f1|round(4) }}</td>
+                                    <td><span class="badge bg-danger">{{ (m.severe_recall * 100)|round(1) }}%</span></td>
+                                    <td>{{ (m.accuracy * 100)|round(1) }}%</td>
+                                    <td>{{ (m.extreme_error_rate * 100)|round(2) }}%</td>
+                                    <td class="text-info fw-bold">{{ m.clinical_score|round(4) }}</td>
+                                    <td>
+                                        {% if m.rank == 1 %}<span class="badge bg-success">CHAMPION</span>
+                                        {% elif m.rank <= 3 %}<span class="badge bg-primary">TOP 3</span>
+                                        {% else %}<span class="badge bg-secondary">Evaluated</span>{% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if top3_img_plot_url %}
+                <div class="card p-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-chart-column text-info me-2"></i> Top 3 Image Models Head-to-Head Comparison</h5>
+                    <img src="{{ top3_img_plot_url }}" class="img-fluid rounded mx-auto d-block" alt="Top 3 Image Models Plot">
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- TAB 3: Tabular Models Leaderboard -->
+            <div class="tab-pane fade" id="tabular-models" role="tabpanel">
+                <div class="card p-4 mb-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-trophy text-warning me-2"></i> CSV Tabular Models Benchmark (All 5 Models)</h5>
+                    <p class="text-muted small">
+                        Evaluated models: <strong>TabNet</strong>, <strong>FT-Transformer</strong>, <strong>MLP</strong>, <strong>DeepFM</strong>, and <strong>CNN-MLP</strong>.
+                        Trained on spinal level coordinates, series orientation, and anatomical descriptors.
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model Name</th>
+                                    <th>Macro-F1</th>
+                                    <th>Severe Recall</th>
+                                    <th>Accuracy</th>
+                                    <th>Extreme Error</th>
+                                    <th>Clinical Score</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for m in tabular_models_ranked %}
+                                <tr {% if m.rank == 1 %}class="table-active border-info"{% endif %}>
+                                    <td>
+                                        {% if m.rank == 1 %}<i class="fa-solid fa-crown text-warning me-1"></i><strong>#1</strong>
+                                        {% elif m.rank == 2 %}<i class="fa-solid fa-medal text-secondary me-1"></i>#2
+                                        {% elif m.rank == 3 %}<i class="fa-solid fa-medal text-danger me-1"></i>#3
+                                        {% else %}#{{ m.rank }}{% endif %}
+                                    </td>
+                                    <td class="fw-bold">{{ m.model_name }}</td>
+                                    <td>{{ m.macro_f1|round(4) }}</td>
+                                    <td><span class="badge bg-danger">{{ (m.severe_recall * 100)|round(1) }}%</span></td>
+                                    <td>{{ (m.accuracy * 100)|round(1) }}%</td>
+                                    <td>{{ (m.extreme_error_rate * 100)|round(2) }}%</td>
+                                    <td class="text-info fw-bold">{{ m.clinical_score|round(4) }}</td>
+                                    <td>
+                                        {% if m.rank == 1 %}<span class="badge bg-success">CHAMPION</span>
+                                        {% elif m.rank <= 3 %}<span class="badge bg-primary">TOP 3</span>
+                                        {% else %}<span class="badge bg-secondary">Evaluated</span>{% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if top3_tab_plot_url %}
+                <div class="card p-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-chart-column text-info me-2"></i> Top 3 Tabular Models Head-to-Head Comparison</h5>
+                    <img src="{{ top3_tab_plot_url }}" class="img-fluid rounded mx-auto d-block" alt="Top 3 Tabular Models Plot">
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- TAB 4: Architecture & Workflow -->
+            <div class="tab-pane fade" id="fusion" role="tabpanel">
+                <div class="card p-4 mb-4">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-diagram-project text-info me-2"></i> Clinical End-to-End Workflow &amp; Safeguards</h5>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border border-secondary rounded">
+                                <h6 class="fw-bold text-primary"><i class="fa-solid fa-filter me-2"></i> 1. Finding the Right Spot (Canal Cropping)</h6>
+                                <p class="small text-muted mb-0">
+                                    Targeting levels L1/L2 through L5/S1. Mid-sagittal slices are targeted where the thecal sac is widest, and anatomical bounding crops isolate the spinal canal from subcutaneous fat and noise.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border border-secondary rounded">
+                                <h6 class="fw-bold text-success"><i class="fa-solid fa-shield-halved me-2"></i> 2. No Cheating (Patient Splitting)</h6>
+                                <p class="small text-muted mb-0">
+                                    All slices and levels belonging to a patient (study_id) are grouped into strictly one partition using <code>GroupShuffleSplit</code>. Completely eliminates test patient leakage.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border border-secondary rounded">
+                                <h6 class="fw-bold text-warning"><i class="fa-solid fa-scale-balanced me-2"></i> 3. Class Imbalance Handling</h6>
+                                <p class="small text-muted mb-0">
+                                    Severe cases comprise ~10% of real scans. The pipeline implements inverse-frequency class weights and Multi-Class Focal Loss (&gamma;=2.0) to prioritize hard severe stenosis cases.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border border-secondary rounded">
+                                <h6 class="fw-bold text-info"><i class="fa-solid fa-eye me-2"></i> 4. Grad-CAM Visual Proof</h6>
+                                <p class="small text-muted mb-0">
+                                    Computes gradient importance on final spatial feature representations to generate color-coded heatmaps over MRI slices, verifying the AI looks at canal geometry rather than background.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

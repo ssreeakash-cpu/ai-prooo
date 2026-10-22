@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Output uploads and temporary caches
+outputs/uploads/*
+!outputs/uploads/.gitkeep
+
+# Large dataset raw images (Keep sample patient 100000001 for instant out-of-the-box demo)
+data/dataset/train_images/10000000[2-9]*
+data/dataset/train_images/1000000[1-9][0-9]*
+
+# Checkpoint model weights larger than 50MB if any
+*.tar.gz
+*.zip

@@ -1,0 +1,31 @@
+
+================================================================================
+   TABULAR CLASSIFICATION BENCHMARK & COMPARISON REPORT: LUMBAR SPINAL STENOSIS
+================================================================================
+
+--- COMPLETE CANDIDATE RANKINGS (All 5 Models) ---
+| Rank   | Model          |   Macro-F1 |   Severe Recall |   Accuracy |   Extreme Err |   Clinical Score |
+|--------|----------------|------------|-----------------|------------|---------------|------------------|
+| #1     | cnn_mlp        |     0.3444 |             0.5 |       0.35 |          0.35 |           0.3303 |
+| #2     | ft_transformer |     0.2143 |             0.5 |       0.2  |          0.5  |           0.2407 |
+| #3     | mlp            |     0.2037 |             0.5 |       0.15 |          0.65 |           0.214  |
+| #4     | deepfm         |     0.2037 |             0.5 |       0.15 |          0.65 |           0.214  |
+| #5     | tabnet         |     0.2222 |             0   |       0.5  |          0.3  |           0.1339 |
+
+--- TOP 3 HEAD-TO-HEAD COMPARISON ---
+| Metric / Attribute            |   cnn_mlp |   ft_transformer |    mlp |
+|-------------------------------|-----------|------------------|--------|
+| Macro-F1 Score                |    0.3444 |           0.2143 | 0.2037 |
+| Severe Stenosis Sensitivity   |    0.5    |           0.5    | 0.5    |
+| Moderate Stenosis Sensitivity |    0.75   |           0.75   | 0.5    |
+| Normal/Mild Sensitivity       |    0.2143 |           0      | 0      |
+| Adjacent-Grade Confusion      |    0.3    |           0.3    | 0.2    |
+| Overall Clinical Score        |    0.3303 |           0.2407 | 0.214  |
+
+================================================================================
+>>> CHAMPION WINNER: cnn_mlp
+  * Macro-F1: 0.3444
+  * Severe Recall (Clinical Safety): 0.5000
+  * Clinical Selection Rationale: Highest composite score balancing detection
+    of rare dangerous severe stenosis cases with minimal adjacent-grade misclassification.
+================================================================================

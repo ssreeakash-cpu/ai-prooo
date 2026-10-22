@@ -1,0 +1,626 @@
+{
+  "image_models": {
+    "all_ranked": [
+      {
+        "model_name": "yolo_classifier",
+        "accuracy": 0.1,
+        "macro_precision": 0.03333333333333333,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.06060606060606061,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.0,
+        "severe_recall": 1.0,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.7,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            42
+          ],
+          [
+            0,
+            0,
+            12
+          ],
+          [
+            0,
+            0,
+            6
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_yolo_classifier.pt",
+        "clinical_score": 0.3192424242424242,
+        "rank": 1
+      },
+      {
+        "model_name": "vision_transformer",
+        "accuracy": 0.15,
+        "macro_precision": 0.1751227495908347,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.19773584905660377,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.5,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.21666666666666667,
+        "extreme_error_rate": 0.6333333333333333,
+        "confusion_matrix": [
+          [
+            0,
+            4,
+            38
+          ],
+          [
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_vision_transformer.pt",
+        "clinical_score": 0.21326100628930816,
+        "rank": 2
+      },
+      {
+        "model_name": "densenet_121",
+        "accuracy": 0.6,
+        "macro_precision": 0.2933333333333334,
+        "macro_recall": 0.3253968253968254,
+        "macro_f1": 0.3069828722002635,
+        "normal_recall": 0.8095238095238095,
+        "moderate_recall": 0.16666666666666666,
+        "severe_recall": 0.0,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.1,
+        "confusion_matrix": [
+          [
+            34,
+            8,
+            0
+          ],
+          [
+            10,
+            2,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_densenet_121.pt",
+        "clinical_score": 0.20279314888010538,
+        "rank": 3
+      },
+      {
+        "model_name": "efficientnet_b3",
+        "accuracy": 0.2,
+        "macro_precision": 0.06666666666666667,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.1111111111111111,
+        "normal_recall": 0.0,
+        "moderate_recall": 1.0,
+        "severe_recall": 0.0,
+        "adjacent_error_rate": 0.8,
+        "extreme_error_rate": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            42,
+            0
+          ],
+          [
+            0,
+            12,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_efficientnet_b3.pt",
+        "clinical_score": 0.07444444444444445,
+        "rank": 4
+      },
+      {
+        "model_name": "unet_classifier",
+        "accuracy": 0.2,
+        "macro_precision": 0.06666666666666667,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.1111111111111111,
+        "normal_recall": 0.0,
+        "moderate_recall": 1.0,
+        "severe_recall": 0.0,
+        "adjacent_error_rate": 0.8,
+        "extreme_error_rate": 0.0,
+        "confusion_matrix": [
+          [
+            0,
+            42,
+            0
+          ],
+          [
+            0,
+            12,
+            0
+          ],
+          [
+            0,
+            6,
+            0
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_unet_classifier.pt",
+        "clinical_score": 0.07444444444444445,
+        "rank": 5
+      }
+    ],
+    "top_3": [
+      {
+        "model_name": "yolo_classifier",
+        "accuracy": 0.1,
+        "macro_precision": 0.03333333333333333,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.06060606060606061,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.0,
+        "severe_recall": 1.0,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.7,
+        "confusion_matrix": [
+          [
+            0,
+            0,
+            42
+          ],
+          [
+            0,
+            0,
+            12
+          ],
+          [
+            0,
+            0,
+            6
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_yolo_classifier.pt",
+        "clinical_score": 0.3192424242424242,
+        "rank": 1
+      },
+      {
+        "model_name": "vision_transformer",
+        "accuracy": 0.15,
+        "macro_precision": 0.1751227495908347,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.19773584905660377,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.5,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.21666666666666667,
+        "extreme_error_rate": 0.6333333333333333,
+        "confusion_matrix": [
+          [
+            0,
+            4,
+            38
+          ],
+          [
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_vision_transformer.pt",
+        "clinical_score": 0.21326100628930816,
+        "rank": 2
+      },
+      {
+        "model_name": "densenet_121",
+        "accuracy": 0.6,
+        "macro_precision": 0.2933333333333334,
+        "macro_recall": 0.3253968253968254,
+        "macro_f1": 0.3069828722002635,
+        "normal_recall": 0.8095238095238095,
+        "moderate_recall": 0.16666666666666666,
+        "severe_recall": 0.0,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.1,
+        "confusion_matrix": [
+          [
+            34,
+            8,
+            0
+          ],
+          [
+            10,
+            2,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_densenet_121.pt",
+        "clinical_score": 0.20279314888010538,
+        "rank": 3
+      }
+    ],
+    "champion": {
+      "model_name": "yolo_classifier",
+      "accuracy": 0.1,
+      "macro_precision": 0.03333333333333333,
+      "macro_recall": 0.3333333333333333,
+      "macro_f1": 0.06060606060606061,
+      "normal_recall": 0.0,
+      "moderate_recall": 0.0,
+      "severe_recall": 1.0,
+      "adjacent_error_rate": 0.2,
+      "extreme_error_rate": 0.7,
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          42
+        ],
+        [
+          0,
+          0,
+          12
+        ],
+        [
+          0,
+          0,
+          6
+        ]
+      ],
+      "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\image_yolo_classifier.pt",
+      "clinical_score": 0.3192424242424242,
+      "rank": 1
+    }
+  },
+  "tabular_models": {
+    "all_ranked": [
+      {
+        "model_name": "cnn_mlp",
+        "accuracy": 0.35,
+        "macro_precision": 0.4166666666666667,
+        "macro_recall": 0.48809523809523814,
+        "macro_f1": 0.3444444444444444,
+        "normal_recall": 0.21428571428571427,
+        "moderate_recall": 0.75,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.35,
+        "confusion_matrix": [
+          [
+            9,
+            12,
+            21
+          ],
+          [
+            3,
+            9,
+            0
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_cnn_mlp.pt",
+        "clinical_score": 0.3302777777777777,
+        "rank": 1
+      },
+      {
+        "model_name": "ft_transformer",
+        "accuracy": 0.2,
+        "macro_precision": 0.15277777777777776,
+        "macro_recall": 0.4166666666666667,
+        "macro_f1": 0.21428571428571427,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.75,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            12,
+            30
+          ],
+          [
+            0,
+            9,
+            3
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_ft_transformer.pt",
+        "clinical_score": 0.24071428571428571,
+        "rank": 2
+      },
+      {
+        "model_name": "mlp",
+        "accuracy": 0.15,
+        "macro_precision": 0.1875,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.20370370370370372,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.5,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.65,
+        "confusion_matrix": [
+          [
+            0,
+            3,
+            39
+          ],
+          [
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_mlp.pt",
+        "clinical_score": 0.2139814814814815,
+        "rank": 3
+      },
+      {
+        "model_name": "deepfm",
+        "accuracy": 0.15,
+        "macro_precision": 0.1875,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.20370370370370372,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.5,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.65,
+        "confusion_matrix": [
+          [
+            0,
+            3,
+            39
+          ],
+          [
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_deepfm.pt",
+        "clinical_score": 0.2139814814814815,
+        "rank": 4
+      },
+      {
+        "model_name": "tabnet",
+        "accuracy": 0.5,
+        "macro_precision": 0.20833333333333334,
+        "macro_recall": 0.2380952380952381,
+        "macro_f1": 0.2222222222222222,
+        "normal_recall": 0.7142857142857143,
+        "moderate_recall": 0.0,
+        "severe_recall": 0.0,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.3,
+        "confusion_matrix": [
+          [
+            30,
+            0,
+            12
+          ],
+          [
+            12,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_tabnet.pt",
+        "clinical_score": 0.1338888888888889,
+        "rank": 5
+      }
+    ],
+    "top_3": [
+      {
+        "model_name": "cnn_mlp",
+        "accuracy": 0.35,
+        "macro_precision": 0.4166666666666667,
+        "macro_recall": 0.48809523809523814,
+        "macro_f1": 0.3444444444444444,
+        "normal_recall": 0.21428571428571427,
+        "moderate_recall": 0.75,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.35,
+        "confusion_matrix": [
+          [
+            9,
+            12,
+            21
+          ],
+          [
+            3,
+            9,
+            0
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_cnn_mlp.pt",
+        "clinical_score": 0.3302777777777777,
+        "rank": 1
+      },
+      {
+        "model_name": "ft_transformer",
+        "accuracy": 0.2,
+        "macro_precision": 0.15277777777777776,
+        "macro_recall": 0.4166666666666667,
+        "macro_f1": 0.21428571428571427,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.75,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.3,
+        "extreme_error_rate": 0.5,
+        "confusion_matrix": [
+          [
+            0,
+            12,
+            30
+          ],
+          [
+            0,
+            9,
+            3
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_ft_transformer.pt",
+        "clinical_score": 0.24071428571428571,
+        "rank": 2
+      },
+      {
+        "model_name": "mlp",
+        "accuracy": 0.15,
+        "macro_precision": 0.1875,
+        "macro_recall": 0.3333333333333333,
+        "macro_f1": 0.20370370370370372,
+        "normal_recall": 0.0,
+        "moderate_recall": 0.5,
+        "severe_recall": 0.5,
+        "adjacent_error_rate": 0.2,
+        "extreme_error_rate": 0.65,
+        "confusion_matrix": [
+          [
+            0,
+            3,
+            39
+          ],
+          [
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            3
+          ]
+        ],
+        "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_mlp.pt",
+        "clinical_score": 0.2139814814814815,
+        "rank": 3
+      }
+    ],
+    "champion": {
+      "model_name": "cnn_mlp",
+      "accuracy": 0.35,
+      "macro_precision": 0.4166666666666667,
+      "macro_recall": 0.48809523809523814,
+      "macro_f1": 0.3444444444444444,
+      "normal_recall": 0.21428571428571427,
+      "moderate_recall": 0.75,
+      "severe_recall": 0.5,
+      "adjacent_error_rate": 0.3,
+      "extreme_error_rate": 0.35,
+      "confusion_matrix": [
+        [
+          9,
+          12,
+          21
+        ],
+        [
+          3,
+          9,
+          0
+        ],
+        [
+          0,
+          3,
+          3
+        ]
+      ],
+      "checkpoint_path": "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\checkpoints\\tabular_cnn_mlp.pt",
+      "clinical_score": 0.3302777777777777,
+      "rank": 1
+    }
+  },
+  "multimodal_fusion": {
+    "model_name": "Multimodal_Fusion",
+    "accuracy": 0.3333333333333333,
+    "macro_precision": 0.2306547619047619,
+    "macro_recall": 0.22079772079772084,
+    "macro_f1": 0.21592039800995025,
+    "normal_recall": 0.38461538461538464,
+    "moderate_recall": 0.2777777777777778,
+    "severe_recall": 0.0,
+    "adjacent_error_rate": 0.6666666666666666,
+    "extreme_error_rate": 0.0,
+    "confusion_matrix": [
+      [
+        15,
+        24,
+        0
+      ],
+      [
+        13,
+        5,
+        0
+      ],
+      [
+        0,
+        3,
+        0
+      ]
+    ]
+  },
+  "gradcam_heatmaps": [
+    "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\heatmaps\\gradcam_patient_100000001_L1_L2.png",
+    "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\heatmaps\\gradcam_patient_100000001_L2_L3.png",
+    "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\heatmaps\\gradcam_patient_100000001_L3_L4.png",
+    "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\heatmaps\\gradcam_patient_100000001_L4_L5.png",
+    "C:\\Users\\Akash\\Documents\\antigravity\\gallant-davinci\\outputs\\heatmaps\\gradcam_patient_100000001_L5_S1.png"
+  ]
+}

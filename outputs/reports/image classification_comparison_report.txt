@@ -1,0 +1,31 @@
+
+================================================================================
+   IMAGE CLASSIFICATION BENCHMARK & COMPARISON REPORT: LUMBAR SPINAL STENOSIS
+================================================================================
+
+--- COMPLETE CANDIDATE RANKINGS (All 5 Models) ---
+| Rank   | Model              |   Macro-F1 |   Severe Recall |   Accuracy |   Extreme Err |   Clinical Score |
+|--------|--------------------|------------|-----------------|------------|---------------|------------------|
+| #1     | yolo_classifier    |     0.0606 |             1   |       0.1  |        0.7    |           0.3192 |
+| #2     | vision_transformer |     0.1977 |             0.5 |       0.15 |        0.6333 |           0.2133 |
+| #3     | densenet_121       |     0.307  |             0   |       0.6  |        0.1    |           0.2028 |
+| #4     | efficientnet_b3    |     0.1111 |             0   |       0.2  |        0      |           0.0744 |
+| #5     | unet_classifier    |     0.1111 |             0   |       0.2  |        0      |           0.0744 |
+
+--- TOP 3 HEAD-TO-HEAD COMPARISON ---
+| Metric / Attribute            |   yolo_classifier |   vision_transformer |   densenet_121 |
+|-------------------------------|-------------------|----------------------|----------------|
+| Macro-F1 Score                |            0.0606 |               0.1977 |         0.307  |
+| Severe Stenosis Sensitivity   |            1      |               0.5    |         0      |
+| Moderate Stenosis Sensitivity |            0      |               0.5    |         0.1667 |
+| Normal/Mild Sensitivity       |            0      |               0      |         0.8095 |
+| Adjacent-Grade Confusion      |            0.2    |               0.2167 |         0.3    |
+| Overall Clinical Score        |            0.3192 |               0.2133 |         0.2028 |
+
+================================================================================
+>>> CHAMPION WINNER: yolo_classifier
+  * Macro-F1: 0.0606
+  * Severe Recall (Clinical Safety): 1.0000
+  * Clinical Selection Rationale: Highest composite score balancing detection
+    of rare dangerous severe stenosis cases with minimal adjacent-grade misclassification.
+================================================================================
