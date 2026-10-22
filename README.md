@@ -1,6 +1,15 @@
 # Lumbar Spinal Stenosis (LSS) AI Diagnostic & Benchmark Platform
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ssreeakash-cpu/ai-prooo/blob/main/LSS_Colab_Pipeline.ipynb)
+
 An end-to-end, clinically safe Deep Learning system for detecting, grading, and localizing **Lumbar Spinal Stenosis (LSS)** across MRI scans (DICOM files) and tabular clinical features according to the **RSNA 2024 Lumbar Spine Degeneration Classification** standard.
+
+---
+
+## ⚡ Run Instantly in Google Colab
+You can run this entire repository with free GPU acceleration directly in Google Colab with one click:
+
+👉 **[Open In Google Colab](https://colab.research.google.com/github/ssreeakash-cpu/ai-prooo/blob/main/LSS_Colab_Pipeline.ipynb)**
 
 ---
 
