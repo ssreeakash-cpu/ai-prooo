@@ -94,7 +94,47 @@ python -m data.download_rsna
 │   └── index.html                  # Bootstrap 5 clinical diagnostic dashboard
 ├── web/
 │   └── app.py                      # Flask web server
+├── dataset/                        # Dedicated dataset CSV directory for quick access
+├── figures/                        # High-resolution benchmark charts, heatmaps & PACS panels
 ├── outputs/                        # Checkpoints, confusion matrices, Grad-CAM heatmaps
 ├── main.py                         # Master CLI entry point
 └── requirements.txt                # Python dependencies
 ```
+
+---
+
+## 📊 Dataset Links & CSV Files
+
+### Official RSNA Kaggle Dataset
+* **Kaggle Competition Source**: [RSNA 2024 Lumbar Spine Degenerative Classification Dataset](https://www.kaggle.com/competitions/rsna-2024-lumbar-spine-degenerative-classification/data)
+
+### Direct GitHub CSV Metadata Files
+All metadata CSV files are tracked and available directly in this GitHub repository:
+* 📄 **`train.csv`**: [View / Download `dataset/train.csv`](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/dataset/train.csv) | [Raw Link](https://raw.githubusercontent.com/ssreeakash-cpu/ai-prooo/main/dataset/train.csv)
+* 📄 **`train_series_descriptions.csv`**: [View / Download `dataset/train_series_descriptions.csv`](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/dataset/train_series_descriptions.csv) | [Raw Link](https://raw.githubusercontent.com/ssreeakash-cpu/ai-prooo/main/dataset/train_series_descriptions.csv)
+* 📄 **`train_label_coordinates.csv`**: [View / Download `dataset/train_label_coordinates.csv`](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/dataset/train_label_coordinates.csv) | [Raw Link](https://raw.githubusercontent.com/ssreeakash-cpu/ai-prooo/main/dataset/train_label_coordinates.csv)
+
+---
+
+## 🖼️ Diagnostic Image Files & Visual Artifacts
+
+The repository includes high-resolution clinical diagnostic figures, Grad-CAM heatmaps, and benchmark plots:
+
+| Image File | Description | GitHub Direct Link |
+| :--- | :--- | :--- |
+| **`composite_sample_1.png`** | 3-Panel PACS Diagnostic Master View (Full Spine + Canal Crop + Heatmap Overlay) | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/composite_sample_1.png) |
+| **`gradcam_patient_100000001_L4_L5.png`** | Grad-CAM Explainability Heatmap for L4/L5 Severe Stenosis localization | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/gradcam_patient_100000001_L4_L5.png) |
+| **`cascaded_top3_hybrids_comparison.png`** | Cascaded Top-3 Hybrid Model Evaluation Chart (`EfficientNet-B3 ➔ DenseNet-121 ➔ ViT`) | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/cascaded_top3_hybrids_comparison.png) |
+| **`smote_dataset_balancing_distribution.png`** | Dataset Class Distribution Before vs. After SMOTE Algorithm Balancing | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/smote_dataset_balancing_distribution.png) |
+| **`top3_image_models_comparison.png`** | Top 3 Image Models Head-to-Head Comparative Metric Chart | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/top3_image_models_comparison.png) |
+| **`top3_tabular_models_comparison.png`** | Top 3 Tabular Models Head-to-Head Comparative Metric Chart | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/top3_tabular_models_comparison.png) |
+| **`full_spine_sample_1.png`** | Full Sagittal Spine MRI Scan with Canal Bounding Box | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/full_spine_sample_1.png) |
+| **`canal_zoom_sample_1.png`** | Spinal Canal Focused Region of Interest (Thecal Sac Zoom) | [View on GitHub](https://github.com/ssreeakash-cpu/ai-prooo/blob/main/figures/canal_zoom_sample_1.png) |
+
+---
+
+## 👥 Project Team & Authors
+* **sreeakash.v** (24bit0611)
+* **rudhrah** (24bit0215)
+* **mayank** (24bit0592)
+

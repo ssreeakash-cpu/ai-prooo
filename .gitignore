@@ -25,3 +25,13 @@ data/dataset/train_images/1000000[1-9][0-9]*
 # Checkpoint model weights larger than 50MB if any
 *.tar.gz
 *.zip
+
+# Unrelated temporary case study files
+Nobara_*
+build_*.py
+extracted_images/
+generate_report.py
+report_figures/
+report_text.py
+test_*
+
